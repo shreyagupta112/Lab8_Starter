@@ -1,10 +1,7 @@
-
-const { expect } = require("@jest/globals");
-
 describe('Basic user flow for Website', () => {
   // First, visit the lab 8 website
   beforeAll(async () => {
-    await page.goto('http://127.0.0.1:5500/');
+    await page.goto('http://127.0.0.1:5500/index.html');
   });
 
   // Next, check to make sure that all 20 <product-item> elements have loaded
@@ -14,7 +11,6 @@ describe('Basic user flow for Website', () => {
     const numProducts = await page.$$eval('product-item', (prodItems) => {
       return prodItems.length;
     });
-    
     // Expect there that array from earlier to be of length 20, meaning 20 <product-item> elements where found
     expect(numProducts).toBe(20);
   });

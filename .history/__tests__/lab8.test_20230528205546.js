@@ -1,10 +1,7 @@
-
-const { expect } = require("@jest/globals");
-
 describe('Basic user flow for Website', () => {
   // First, visit the lab 8 website
   beforeAll(async () => {
-    await page.goto('http://127.0.0.1:5500/');
+    await page.goto('http://127.0.0.1:5500/index.html');
   });
 
   // Next, check to make sure that all 20 <product-item> elements have loaded
@@ -14,7 +11,6 @@ describe('Basic user flow for Website', () => {
     const numProducts = await page.$$eval('product-item', (prodItems) => {
       return prodItems.length;
     });
-    
     // Expect there that array from earlier to be of length 20, meaning 20 <product-item> elements where found
     expect(numProducts).toBe(20);
   });
@@ -101,8 +97,8 @@ describe('Basic user flow for Website', () => {
       const root = await prodItem.getProperty('shadowRoot')
       const button = await root.$('button');
       const prop = await button.getProperty('innerText');
-      const value = await prop.jsonValue();
-      expect(value).toBe('Remove from Cart');
+      const buttonValue = await prop.jsonValue();
+      expect(buttonValue).toBe('Remove from Cart');
     }
     // Also check to make sure that #cart-count is still 20
     const count = await page.$('#cart-count');
@@ -148,10 +144,12 @@ describe('Basic user flow for Website', () => {
       const value = await prop.jsonValue();
       expect(value).toBe('Add to Cart');
     }
-    const count = await page.$('#cart-count')
-    const cProp = await count.getProperty('innerText');
-    const cValue = await cProp.jsonValue();
-    expect(cValue).toBe('0');
+
+    // Also check to make sure that #cart-count is still 0
+    const cartCount = await page.$('#cart-count')
+    const text = await cartCount.getProperty('innerText');
+    const value = await text.jsonValue();
+    expect(value).toBe('0');
   }, 10000);
 
   // Checking to make sure that localStorage for the cart is as we'd expect for the

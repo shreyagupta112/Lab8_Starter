@@ -1,4 +1,3 @@
-
 const { expect } = require("@jest/globals");
 
 describe('Basic user flow for Website', () => {

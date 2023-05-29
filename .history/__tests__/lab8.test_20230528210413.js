@@ -1,4 +1,3 @@
-
 const { expect } = require("@jest/globals");
 
 describe('Basic user flow for Website', () => {
@@ -14,7 +13,6 @@ describe('Basic user flow for Website', () => {
     const numProducts = await page.$$eval('product-item', (prodItems) => {
       return prodItems.length;
     });
-    
     // Expect there that array from earlier to be of length 20, meaning 20 <product-item> elements where found
     expect(numProducts).toBe(20);
   });

@@ -18,7 +18,7 @@ test('email format', () => {
 });
 
 test('password strength', () => {
-    expect(functions.isStrongPassword('cyfds7d4cd')).toBe(true);
+    expect(functions.isStrongPassword('cy7d4!')).toBe(true);
     expect(functions.isStrongPassword('aa1a1a1aa1')).toBe(true);
     expect(functions.isStrongPassword('a')).toBe(false);
     expect(functions.isStrongPassword('0')).toBe(false);
@@ -33,7 +33,7 @@ test('date format', () => {
 
 test('hex color', () => {
     expect(functions.isHexColor('#00ff00')).toBe(true);
-    expect(functions.isHexColor('#123abc')).toBe(true);
+    expect(functions.isHexColor('#11f011')).toBe(true);
     expect(functions.isHexColor('notahex')).toBe(false);
     expect(functions.isHexColor('#isahex')).toBe(false);
 });
